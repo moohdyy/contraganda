@@ -1,0 +1,4 @@
+function searchAPI(string){
+	console.log(string);
+	
+}
