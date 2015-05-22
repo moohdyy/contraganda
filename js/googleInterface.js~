@@ -1,0 +1,8 @@
+var newsSearch;
+
+
+function searchAPI(string){
+	console.log( "whaaaa "+ string);
+	newsSearch.execute(string);
+	
+}

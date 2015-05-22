@@ -25,7 +25,6 @@
         var content = $('#content');
         content.html('');
         var resultSize = $('#resultSize').val();
-        console.log(resultSize);
         if (newsSearch.results && newsSearch.results.length > 0) {
 				console.log(newsSearch);
           for (var i = 0; i < newsSearch.results.length; i++) {
