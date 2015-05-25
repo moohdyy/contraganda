@@ -11,9 +11,11 @@ function startSearch(){
 }
 
 function searchComplete() {
-
+    var currentPage = 7;
     // Check that we got results
-    var currentPage = newsSearch.cursor.currentPageIndex;
+    if (newsSearch.cursor) {
+        currentPage = newsSearch.cursor.currentPageIndex;
+    }
     if (newsSearch.results && newsSearch.results.length > 0) {
         console.log(newsSearch);
         console.log("currentPage "+currentPage);
