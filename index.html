@@ -3,77 +3,48 @@
 
 <head>
 
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="description" content="">
-   <meta name="author" content="Martin Hendges" >
-	<script src="js/googleInterface.js"></script>
-	<script src="js/jquery-2.1.4.min.js"></script>
-	<script src="https://www.google.com/jsapi"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Martin Hendges">
+    <script src="js/googleInterface.js"></script>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="https://www.google.com/jsapi"></script>
+    <script src="js/diffbot.js"></script>
+    <script src="js/tableStuff.js"></script>
     <script type="text/javascript">
-      
-      // This code generates a "Raw Searcher" to handle search queries. The Raw 
-      // Searcher requires you to handle and draw the search results manually.
-      google.load('search', '1');
 
-      var newsSearch;
+        // This code generates a "Raw Searcher" to handle search queries. The Raw
+        // Searcher requires you to handle and draw the search results manually.
+        google.load('search', '1');
 
-      function searchComplete() {
 
-        // Check that we got results
-        var content = $('#content');
-        content.html('');
-        var resultSize = $('#resultSize').val();
-        console.log(resultSize);
-        if (newsSearch.results && newsSearch.results.length > 0) {
-				console.log(newsSearch);
-          for (var i = 0; i < newsSearch.results.length; i++) {
-            // Create HTML elements for search results
-            var p = document.createElement('p');
-            var a = document.createElement('a');
-            a.href=newsSearch.results[i].unescapedUrl;
-            a.innerHTML = newsSearch.results[i].title;
+        function onLoad() {
+            createTable();
+            var diffbotClient = new DiffBot("e48344ef143245df2a7d41d72d9ce72f");
+            createNewssearch();
+            startSearch();
 
-            // Append search results to the HTML nodes
-            p.appendChild(a);
-            content.append(p);
-          }
         }
-      }
-
-      function onLoad() {
-
-        // Create a News Search instance.
-        newsSearch = new google.search.NewsSearch();
-  
-        // Set searchComplete as the callback function when a search is 
-        // complete.  The newsSearch object will have results in it.
-        newsSearch.setSearchCompleteCallback(this, searchComplete, null);
-		  newsSearch.setResultSetSize(8);
-        // Specify search quer(ies)
-        newsSearch.execute('tests');
-
-        // Include the required Google branding
-        google.search.Search.getBranding('branding');
-      }
-
-      // Set a callback to call your code when the page loads
-      google.setOnLoadCallback(onLoad);
+        // Set a callback to call your code when the page loads
+        google.setOnLoadCallback(onLoad);
     </script>
-    	
-	
+
 
 </head>
-  <body style="font-family: Arial;border: 0 none;"> 
-  <div id="search">
-		<h1>Search</h1>
-		<input id="txt-in" type="text"/>	
-		<button onclick=searchAPI($("#txt-in").val());>start search</button>
-		Resultsize: <input id="resultSize" type="number" value="20"/>
-	</div>
-    <div id="branding"  style="float: left;"></div><br />
-    <div id="content">Loading...</div>
+<body style="font-family: Arial;border: 0 none;">
+<div id="search">
+    <h1>Search</h1>
+    Site:<input id="site-in" type="text" value="www.nytimes.com">
+    Term:<input id="txt-in" type="text" value="Barack Obama">
+    <button onclick=startSearch();>start search</button>
+
+</div>
+<div id="branding" style="float: left;"></div>
+<br/>
+
+<div id="content">Loading...</div>
 
 </body>
 
