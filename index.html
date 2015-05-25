@@ -19,10 +19,10 @@
         // Searcher requires you to handle and draw the search results manually.
         google.load('search', '1');
 
-
+        var diffbotClient;
         function onLoad() {
             createTable();
-            var diffbotClient = new DiffBot("e48344ef143245df2a7d41d72d9ce72f");
+            diffbotClient = new DiffBot("e48344ef143245df2a7d41d72d9ce72f");
             createNewssearch();
             startSearch();
 
@@ -45,7 +45,6 @@
 <br/>
 
 <div id="content">Loading...</div>
-
 </body>
 
 </html>

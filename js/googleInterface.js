@@ -19,10 +19,10 @@ function searchComplete() {
         console.log("currentPage "+currentPage);
 
         for (var i = 0; i < newsSearch.results.length; i++) {
-            var resultData = new Array(3);
-            resultData[0] = newsSearch.results[i].unescapedUrl;
-            resultData[1] = newsSearch.results[i].publishedDate;
-            resultData[2] = newsSearch.results[i].title;
+            var resultData ={};
+            resultData.url = newsSearch.results[i].unescapedUrl;
+            resultData.date = newsSearch.results[i].publishedDate;
+            resultData.title = newsSearch.results[i].title;
             writeResultToTable(currentPage,i,resultData);
         }
     }
