@@ -2,10 +2,19 @@ var newsSearch;
 
 
 function startSearch(){
+
+    createTable();
     var topic = $("#txt-in").val();
     var site = $("#site-in").val();
+
 	console.log( "topic: "+ topic + ", site: " +site);
     newsSearch.setSiteRestriction(site);
+    if($("#sortDate").is(":checked")){
+        alert("yes");
+        newsSearch.setResultOrder(google.search.Search.ORDER_BY_DATE);
+    }else{
+        newsSearch.setResultOrder(google.search.Search.ORDER_BY_RELEVANCE);
+    }
 	newsSearch.execute(topic);
 	
 }

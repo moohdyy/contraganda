@@ -4,15 +4,18 @@
 <head>
 
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Martin Hendges">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.theme.min.css">
     <script src="js/googleInterface.js"></script>
     <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="jquery-ui/jquery-ui.js"></script>
     <script src="https://www.google.com/jsapi"></script>
     <script src="js/diffbot.js"></script>
-    <script src="js/tableStuff.js"></script>
+    <script src="js/grabbingUtilities.js"></script>
     <script type="text/javascript">
 
         // This code generates a "Raw Searcher" to handle search queries. The Raw
@@ -21,30 +24,43 @@
 
         var diffbotClient;
         function onLoad() {
-            createTable();
             diffbotClient = new DiffBot("e48344ef143245df2a7d41d72d9ce72f");
             createNewssearch();
             startSearch();
-
+            initSelectAll();
         }
         // Set a callback to call your code when the page loads
         google.setOnLoadCallback(onLoad);
+
     </script>
 
 
 </head>
 <body style="font-family: Arial;border: 0 none;">
+<ul class="simple-menu">
+    <li><a href="index.html">Search</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+</ul>
 <div id="search">
-    <h1>Search</h1>
     Site:<input id="site-in" type="text" value="www.nytimes.com">
     Term:<input id="txt-in" type="text" value="Barack Obama">
+    Sort by Date:<input id="sortDate" type="checkbox">
     <button onclick=startSearch();>start search</button>
+    <div style="float: right">
+        <button onclick=getAllSelectedArticles();>download all selected</button>
+        Select all:<input id="selectALL" type="checkbox" >
+    </div>
 
 </div>
 <div id="branding" style="float: left;"></div>
 <br/>
 
 <div id="content">Loading...</div>
+<div id="dialog" title="Diffbot Progress">
+    <p id="dialog_text"></p>
+    <p id="dialog_actualURL"></p>
+    <div id="dialog_progressBar"></div>
+</div>
 </body>
 
 </html>

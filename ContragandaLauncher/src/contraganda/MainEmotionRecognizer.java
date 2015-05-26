@@ -1,5 +1,3 @@
-package contraganda;
-
 import org.json.simple.JSONObject;
 
 import java.util.Random;
